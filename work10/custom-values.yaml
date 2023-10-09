@@ -1,0 +1,7 @@
+auth:
+  password: "password"
+persistence:
+  enabled: false
+  #storageClass: "standard-rwo"
+replica:
+  replicaCount: 1

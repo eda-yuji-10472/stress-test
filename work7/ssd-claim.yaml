@@ -1,0 +1,12 @@
+# ssd-claim.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-volume
+spec:
+  storageClassName: pd-extreme-testing
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 32Gi

@@ -1,0 +1,29 @@
+password: "password"
+
+helm upgrade my-redis1 --set "password=${REDIS_PASSWORD},cluster.externalAccess.enabled=true,
+cluster.externalAccess.service.type=LoadBalancer,cluster.externalAccess.service.loadBalancerIP[0]=<loadBalancerip-0>,
+cluster.externalAccess.service.loadBalancerIP[1]=<loadbalanacerip-1>,cluster.externalAccess.service.loadBalancerIP[2]=<loadbalancerip-2>,
+cluster.externalAccess.service.loadBalancerIP[3]=<loadbalancerip-3>,cluster.externalAccess.service.loadBalancerIP[4]=<loadbalancerip-4>,
+cluster.externalAccess.service.loadBalancerIP[5]=<loadbalancerip-5>,cluster.externalAccess.service.loadBalancerIP[6]=,cluster.nodes=7,
+cluster.init=false oci://registry-1.docker.io/bitnamicharts/redis-cluster
+
+helm upgrade my-redis1 --set "password=${REDIS_PASSWORD},cluster.externalAccess.enabled=true,cluster.init=false oci://registry-1.docker.io/bitnamicharts/redis-cluster
+
+---
+
+
+helm upgrade my-redis1 --set "password=${REDIS_PASSWORD},cluster.externalAccess.enabled=true,cluster.init=false" oci://registry-1.docker.io/bitnamicharts/redis-cluster
+
+helm upgrade --namespace default my-redis1 --set "password=${REDIS_PASSWORD},cluster.externalAccess.enabled=true,cluster.externalAccess.service.type=LoadBalancer,cluster.externalAccess.service.loadBalancerIP[0]=104.198.176.240,cluster.externalAccess.service.loadBalancerIP[1]=34.72.222.85,cluster.externalAccess.service.loadBalancerIP[2]=35.239.65.106,cluster.externalAccess.service.loadBalancerIP[3]=34.123.82.31,cluster.externalAccess.service.loadBalancerIP[4]=34.16.37.225,cluster.externalAccess.service.loadBalancerIP[5]=34.123.64.13" oci://registry-1.docker.io/bitnamicharts/redis-cluster
+
+helm install my-redis1 \
+  --set auth.password=password \
+    oci://registry-1.docker.io/bitnamicharts/redis
+
+helm install my-redis1 \
+  --set password=password \
+    oci://registry-1.docker.io/bitnamicharts/redis-cluster
+
+helm install my-release \
+  --set password=secretpassword \
+    oci://registry-1.docker.io/bitnamicharts/redis-cluster

@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  re.yaml: ""
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: additional-scrape-configs

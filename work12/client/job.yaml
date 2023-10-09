@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: client-job
+spec:
+  parallelism: 10
+  completions: 10
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: us.gcr.io/striped-proxy-187410/dns-client:latest
+        command: ["/app/client"]
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            cpu: 300m
+            memory: 128Mi
+      restartPolicy: OnFailure

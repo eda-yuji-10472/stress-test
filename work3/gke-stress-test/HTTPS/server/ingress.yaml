@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: my-app
+    networking.gke.io/managed-certificates: my-managed-certificate
+spec:
+  rules:
+  - host: gke-stress-test.verification-gcp.colopl.jp
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-service
+            port:
+              number: 8080
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: my-managed-certificate
+spec:
+  domains:
+  - gke-stress-test.verification-gcp.colopl.jp

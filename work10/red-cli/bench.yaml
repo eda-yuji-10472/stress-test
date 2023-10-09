@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: bench
+  name: bench
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: bench
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bench
+    spec:
+      containers:
+      - args:
+        - -h
+        - my-redis1-redis-cluster
+        - -a
+        - password
+        - --cluster-mode
+        - -n
+        - "20000000"
+        image: redislabs/memtier_benchmark
+        imagePullPolicy: Always
+        name: bench
+        resources:
+          requests:
+            cpu: 300m

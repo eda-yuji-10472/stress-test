@@ -1,0 +1,3 @@
+name: td-hybrid-proxy
+proxyBind: true
+urlMap: global/urlMaps/td-hybrid-url-map

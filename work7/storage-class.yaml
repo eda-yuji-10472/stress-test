@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: my-storage-class
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-extreme
+  provisioned-iops-on-create: '10000'
